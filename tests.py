@@ -127,6 +127,9 @@ class TestMower(unittest.TestCase):
         self.assertEqual(mower.direction,expected_direction)
         
     def test_mover_execute_instruction_rotate_right(self):
+        """
+        User tries to rotate mower right
+        """
         map=Map()
         map.init_surface("5 5")
         expected_direction=Directions("E")
@@ -137,6 +140,9 @@ class TestMower(unittest.TestCase):
         self.assertEqual(mower.direction,expected_direction)
     
     def test_mover_execute_instruction_rotate_left(self):
+        """
+        User tries to rotate mower left
+        """
         map=Map()
         map.init_surface("5 5")
         expected_direction=Directions("W")
@@ -147,6 +153,9 @@ class TestMower(unittest.TestCase):
         self.assertEqual(mower.direction,expected_direction)
     
     def test_mover_execute_instruction_move(self):
+        """
+        User tries to move mower front
+        """
         map=Map()
         map.init_surface("5 5")
         expected_position=Position(2,2)
@@ -159,6 +168,9 @@ class TestMower(unittest.TestCase):
         self.assertEqual(mower.position.y,expected_position.y)
         
     def test_mover_start(self):
+        """
+        User start mower
+        """
         map=Map()
         map.init_surface("5 5")
         expected_position=Position(1,3)

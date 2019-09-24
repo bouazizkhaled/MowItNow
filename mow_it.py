@@ -23,6 +23,7 @@ class Directions(Enum):
 
 
 class Map:
+    """The map is the surface where the mower operate"""
     def __init__(self):
         self.height = 0
         self.width = 0
@@ -77,7 +78,7 @@ class Mower:
             raise MowerPositionException("Mower position out of map")
 
     def execute_instruction(self, instruction):
-        """If instruction is D or G rotate mower else move front."""
+        """If instruction is D or G rotate mower else if A move front."""
         if instruction in ["G", "D"]:
             self.rotate(instruction)
         elif instruction == "A":
@@ -87,6 +88,7 @@ class Mower:
                 print(e)
 
     def rotate(self, direction):
+        """Change mower direction N E S W"""
         directions = [x.value for x in list(Directions)]
         if direction is "D":
             self.direction = Directions(directions[(directions.index(self.direction.value) + 1) % len(directions)])
@@ -96,6 +98,7 @@ class Mower:
             raise MowerRotationException("Rotation direction %s is incorrect" % direction)
 
     def move(self):
+        """Move mower front depending of the direction"""
         if self.direction is Directions.NORTH:
             new_position = Position(self.position.x, self.position.y + 1)
         elif self.direction is Directions.SOUTH:
@@ -111,6 +114,7 @@ class Mower:
 
 
 def init_mowers_from_file(file_path):
+    """Initiate mower map position and direction from file """
     instructions = None
     if not os.path.exists(file_path):
         raise InstructionFileDoesNotExist
